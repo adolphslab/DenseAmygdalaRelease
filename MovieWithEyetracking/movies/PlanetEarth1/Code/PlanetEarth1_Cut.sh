@@ -1,23 +1,26 @@
 #!/bin/bash
-# Split The Grand Budapest Hotel into approx 15 min segments
+# Split Planet Earth E1 into ~15 min segments
 # Adapted from https://github.com/mvdoc/budapest-fmri-data/blob/master/scripts/preprocessing-stimulus/split_movie.sh
+#
+# AUTHOR : Joud Mar'i
+# DATES  : 2022-04-18 Mike Tyszka Update path handling and refactor variables
 
 src_dir="../Original"
-out_dir="../Splits"
+out_dir="../Segments"
 
 # Safely create output directory
 mkdir -p ${out_dir}
 
-mp4_fname=${src_dir}/"Budapest_720p30_Timestamped.mp4"
+mp4_fname=${src_dir}/"PlanetEarth_720p30_E1_Timestamped.mp4"
 
 # Split timestamps (to the frame)
-splits_fname="Budapest_Exact_Splits.tsv"
+splits_fname="PlanetEarth1_Exact_Cuts.tsv"
 
 while read -r clip start stop dur; do
 
   echo "Clip ${clip} Start: ${start} Stop: ${stop} Duration: ${dur}"
 
-  out_fname=${out_dir}/Budapest_"${clip}".mp4 
+  out_fname=${out_dir}/PlanetEarth1_"${clip}".mp4
 
   ffmpeg  \
     -i ${mp4_fname} \
